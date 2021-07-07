@@ -1,4 +1,8 @@
+import 'dart:convert';
+
+import 'package:demo_getx/models/user.dart';
 import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 
 class UsersApi {
   //Convirtiendo UserApi en SINGLETON
@@ -8,14 +12,28 @@ class UsersApi {
 
   final _dio = Dio();
 
-  getUsers(int page) async {
-    try {
-      final Response response =
-          await this._dio.get('https://reqres.in/api/users', queryParameters: {
-        "page": page,
-      });
+  Future<List<User>> getUsers(int page) async {
+    final response =
+        await http.get(Uri.parse("https://reqres.in/api/users?delay=3"));
 
-      var data = response.data['page'];
-    } catch (e) {}
+    List<User> users = [];
+
+    if (response.statusCode == 200) {
+      String body = utf8.decode(response.bodyBytes);
+      final jsonData = jsonDecode(body);
+
+      for (var item in jsonData["data"]) {
+        users.add(User(
+            id: item["id"],
+            email: item["email"],
+            firstname: item["first_name"],
+            lastname: item["last_name"],
+            avatar: item["avatar"]));
+      }
+      print(users);
+      return users;
+    } else {
+      throw Exception("Fallo la conexion");
+    }
   }
 }

@@ -11,4 +11,14 @@ class User {
     required this.lastname,
     required this.avatar,
   });
+
+  static User fromJson(Map<String, dynamic> json) {
+    return User(
+      id: json['id'],
+      email: json['email'],
+      firstname: json['firstname'],
+      lastname: json['lastname'],
+      avatar: json['avatar'],
+    );
+  }
 }
