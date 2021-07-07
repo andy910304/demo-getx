@@ -1,6 +1,8 @@
 import 'package:demo_getx/api/users_api.dart';
 import 'package:demo_getx/models/user.dart';
+import 'package:demo_getx/pages/profile_page.dart';
 import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   int _counter = 0;
@@ -34,5 +36,14 @@ class HomeController extends GetxController {
     // el metodo update() es usado para actualizar los widgets,
     // se le pueden enviar los id por parametros
     update(['text'], _counter >= 5);
+  }
+
+  showUserProfile(User user) {
+    Get.to(
+      ProfilePage(),
+      arguments: {
+        "userId": 3,
+      },
+    );
   }
 }
