@@ -38,12 +38,13 @@ class HomeController extends GetxController {
     update(['text'], _counter >= 5);
   }
 
-  showUserProfile(User user) {
-    Get.to(
+  Future<void> showUserProfile(User user) async {
+    final result = await Get.to<String>(
       ProfilePage(),
-      arguments: {
-        "userId": 3,
-      },
+      arguments: user,
     );
+    if (result != null) {
+      print("result $result");
+    }
   }
 }
