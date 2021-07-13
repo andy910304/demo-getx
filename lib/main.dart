@@ -1,3 +1,4 @@
+import 'package:demo_getx/controllers/global_controller.dart';
 import 'package:demo_getx/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Get.put(GlobalController());
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
