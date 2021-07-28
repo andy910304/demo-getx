@@ -26,4 +26,10 @@ class GlobalController extends GetxController {
 
     update(['products']);
   }
+
+  onFavorite(int index, bool isFavorite) {
+    Product product = _products[index];
+    product.isFavorite = isFavorite;
+    update(['products']);
+  }
 }
