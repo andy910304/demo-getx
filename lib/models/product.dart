@@ -4,6 +4,7 @@ class Product {
   late final String description;
   late final double price;
   late final double rate;
+  bool isFavorite = false;
 
   Product({
     required this.id,
