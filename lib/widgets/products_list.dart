@@ -9,6 +9,7 @@ class ProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<GlobalController>(
+      id: 'products',
       builder: (_) => ListView.builder(
         itemBuilder: (__, index) {
           final Product product = _.products[index];
@@ -16,8 +17,13 @@ class ProductList extends StatelessWidget {
             title: Text(product.name),
             subtitle: Text("USD ${product.price}"),
             trailing: IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.favorite),
+              onPressed: () {
+                _.onFavorite(index, !product.isFavorite);
+              },
+              icon: Icon(
+                Icons.favorite,
+                color: product.isFavorite ? Colors.blue : Colors.grey,
+              ),
             ),
           );
         },
