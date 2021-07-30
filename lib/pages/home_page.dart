@@ -1,3 +1,4 @@
+import 'package:demo_getx/controllers/global_controller.dart';
 import 'package:demo_getx/controllers/home_controller.dart';
 import 'package:demo_getx/pages/widgets_home_page/home_list.dart';
 import 'package:demo_getx/widgets/products_list.dart';
@@ -13,6 +14,26 @@ class HomePage extends StatelessWidget {
         builder: (_) {
           print("building home page");
           return Scaffold(
+            appBar: AppBar(
+              actions: [
+                GetBuilder<GlobalController>(
+                    id: 'favorite',
+                    builder: (_) => TextButton(
+                          style: TextButton.styleFrom(
+                            primary: Colors.white,
+                            minimumSize: Size(88, 44),
+                            padding: EdgeInsets.symmetric(horizontal: 16.0),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(2.0)),
+                            ),
+                            backgroundColor: Colors.blue,
+                          ),
+                          onPressed: () {},
+                          child: Text("Favoritos(${_.favorite.length})"),
+                        ))
+              ],
+            ),
             body: ProductList(),
             //body: HomeList(),
             floatingActionButton: FloatingActionButton(

@@ -6,6 +6,12 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 
 class GlobalController extends GetxController {
   List<Product> _products = [];
+
+  //El mapa se utiliza para agregar los favoritos y contabilizarlos
+  // en el AppBar
+  Map<String, Product> _favorite = Map();
+  Map<String, Product> get favorite => _favorite;
+
   List<Product> get products => _products;
 
   @override
@@ -30,6 +36,11 @@ class GlobalController extends GetxController {
   onFavorite(int index, bool isFavorite) {
     Product product = _products[index];
     product.isFavorite = isFavorite;
-    update(['products']);
+    if (isFavorite) {
+      this._favorite[product.name] = product;
+    } else {
+      this._favorite.remove(product.name);
+    }
+    update(['products', 'favorite']);
   }
 }
