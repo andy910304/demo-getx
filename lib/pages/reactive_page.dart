@@ -13,27 +13,26 @@ class ReactivePage extends StatelessWidget {
           print("REACTIVE");
           return Scaffold(
             body: Center(
-              child: Obx(() => ListView.builder(
-                    itemBuilder: (__, index) {
-                      final String text = _.items[index];
-                      return ListTile(
-                        title: Text(text),
-                        trailing: IconButton(
-                          onPressed: () {
-                            _.removeItem(index);
-                          },
-                          icon: Icon(Icons.delete),
-                        ),
-                      );
-                    },
-                    itemCount: _.items.length,
-                  )),
+              child: Obx(
+                () => ListView(
+                  children: _.mapItems.values
+                      .map((e) => ListTile(
+                            title: Text(e),
+                            trailing: IconButton(
+                              onPressed: () => _.removeMapItem(e),
+                              icon: Icon(Icons.delete),
+                            ),
+                          ))
+                      .toList(),
+                ),
+              ),
             ),
             floatingActionButton: FloatingActionButton(
               child: Icon(Icons.add),
               onPressed: () {
                 //_.increment();
-                _.addItem();
+                //_.addItem();
+                _.addMapItem();
               },
             ),
           );
