@@ -1,3 +1,4 @@
+import 'package:demo_getx/models/pet.dart';
 import 'package:get/get.dart';
 
 class ReactiveController extends GetxController {
@@ -6,6 +7,8 @@ class ReactiveController extends GetxController {
 
   RxList<String> items = <String>[].obs;
   RxMap<String, dynamic> mapItems = Map<String, dynamic>().obs;
+
+  Rx<Pet> myPet = Pet(name: "Lulu", age: 1).obs;
 
   void increment() {
     counter.value++;
@@ -31,5 +34,9 @@ class ReactiveController extends GetxController {
 
   void removeItem(int index) {
     items.removeAt(index);
+  }
+
+  void setPetAge(int age) {
+    myPet.value = myPet.value.copyWith(age: age, name: '');
   }
 }
