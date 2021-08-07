@@ -1,12 +1,14 @@
 import 'package:demo_getx/controllers/reactive_controller.dart';
+import 'package:demo_getx/controllers/socket_client_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 
 class ReactivePage extends StatelessWidget {
   const ReactivePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final socketController = Get.find<SocketClientController>();
     return GetBuilder<ReactiveController>(
         init: ReactiveController(),
         builder: (_) {
@@ -15,8 +17,11 @@ class ReactivePage extends StatelessWidget {
             body: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                // Obx(
+                //   () => Text("age ${_.myPet.age}"),
+                // ),
                 Obx(
-                  () => Text("age ${_.myPet.age}"),
+                  () => Text(socketController.message.value),
                 ),
                 // ignore: deprecated_member_use
                 FlatButton(

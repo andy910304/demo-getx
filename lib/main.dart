@@ -1,4 +1,5 @@
 import 'package:demo_getx/controllers/global_controller.dart';
+import 'package:demo_getx/controllers/socket_client_controller.dart';
 import 'package:demo_getx/pages/reactive_page.dart';
 import 'package:demo_getx/pages/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(GlobalController());
+    Get.put(SocketClientController());
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
