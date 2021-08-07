@@ -8,7 +8,7 @@ class ReactiveController extends GetxController {
   RxList<String> items = <String>[].obs;
   RxMap<String, dynamic> mapItems = Map<String, dynamic>().obs;
 
-  Rx<Pet> myPet = Pet(name: "Lulu", age: 1).obs;
+  Pet myPet = Pet(name: "Lulu", age: 1);
 
   void increment() {
     counter.value++;
@@ -37,6 +37,7 @@ class ReactiveController extends GetxController {
   }
 
   void setPetAge(int age) {
-    myPet.value = myPet.value.copyWith(age: age, name: '');
+    //myPet.value = myPet.value.copyWith(age: age, name: '');
+    myPet.age = age;
   }
 }
